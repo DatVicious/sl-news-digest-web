@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lanka Lens — Daily Sri Lanka News Digest</title>
+<meta name="description" content="A daily AI-powered digest of Sri Lanka news from English, Sinhala, and Tamil sources. Free, independent, no ads.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -12,11 +13,9 @@
     --paper-dark: #ede7d5;
     --accent: #c0392b;
     --accent-warm: #e67e22;
-    --gold: #b8860b;
     --muted: #6b6050;
     --rule: #c9bfa8;
-    --local: #1a3a5c;
-    --international: #2c1810;
+    --navy: #1a3a5c;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,18 +25,16 @@
     color: var(--ink);
     font-family: 'Source Serif 4', Georgia, serif;
     font-weight: 300;
-    line-height: 1.6;
-    min-height: 100vh;
+    line-height: 1.7;
   }
 
-  /* Masthead */
   .masthead {
     background: var(--ink);
     color: var(--paper);
     text-align: center;
-    padding: 2rem 1rem 1.5rem;
+    padding: 2.5rem 1rem 1.75rem;
     border-bottom: 4px solid var(--accent);
-    animation: fadeDown 0.6s ease forwards;
+    animation: fadeDown 0.7s ease forwards;
   }
 
   .masthead-flag {
@@ -50,83 +47,77 @@
   }
 
   .masthead h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 6rem);
     font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.02em;
     color: var(--paper);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 
-  .masthead h1 em {
-    font-style: italic;
-    color: #e8d5b0;
-  }
+  .masthead h1 em { font-style: italic; color: #e8d5b0; }
 
   .masthead-sub {
-    font-family: 'Source Serif 4', serif;
     font-style: italic;
     font-size: 0.95rem;
     color: #a09070;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .masthead-meta {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.15em;
-    color: #6b6050;
-    border-top: 1px solid #333;
-    padding-top: 1rem;
+    color: #5a5040;
+    border-top: 1px solid #2e2a22;
+    padding-top: 1.1rem;
+    flex-wrap: wrap;
   }
 
-  .masthead-meta .divider { color: var(--accent); }
+  .masthead-meta .div { color: var(--accent); }
 
-  /* Nav */
   nav {
     background: var(--paper-dark);
     border-bottom: 1px solid var(--rule);
-    padding: 0.6rem 2rem;
+    padding: 0.65rem 2rem;
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    animation: fadeDown 0.6s ease 0.1s forwards;
-    opacity: 0;
+    gap: 2.5rem;
+    animation: fadeDown 0.7s ease 0.1s both;
   }
 
   nav a {
     font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
     text-decoration: none;
     transition: color 0.2s;
+    padding-bottom: 0.15rem;
   }
 
-  nav a:hover, nav a.active { color: var(--accent); }
+  nav a:hover { color: var(--accent); }
+  nav a.active { color: var(--accent); border-bottom: 1px solid var(--accent); }
 
-  /* Layout */
   .container {
-    max-width: 1100px;
+    max-width: 1120px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
-  /* Top Stories Banner */
   .top-stories {
     background: var(--ink);
     color: var(--paper);
-    padding: 1.5rem 2rem;
+    padding: 1.75rem 2rem;
     margin: 2rem 0;
     border-left: 5px solid var(--accent);
-    animation: fadeUp 0.6s ease 0.2s forwards;
-    opacity: 0;
+    animation: fadeUp 0.6s ease 0.2s both;
   }
 
   .top-stories-label {
@@ -135,64 +126,54 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
   }
 
   .top-story-item {
     display: flex;
     gap: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     font-size: 0.9rem;
     line-height: 1.5;
     align-items: baseline;
   }
 
-  .top-story-item:last-child { border-bottom: none; }
+  .top-story-item:last-child { border-bottom: none; padding-bottom: 0; }
 
   .top-story-num {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent);
     line-height: 1;
     min-width: 1.5rem;
-    margin-top: 0.1rem;
+    flex-shrink: 0;
   }
 
-  .top-story-text {
-    color: #e8dcc8;
-  }
+  .top-story-text { color: #ddd4be; }
+  .top-story-text strong { color: var(--paper); font-weight: 600; }
 
-  .top-story-text strong {
-    color: var(--paper);
-    font-weight: 600;
-  }
-
-  /* Section Headers */
   .section-header {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin: 2.5rem 0 1.5rem;
-    animation: fadeUp 0.6s ease forwards;
-    opacity: 0;
+    animation: fadeUp 0.6s ease both;
   }
 
-  .section-header-local { animation-delay: 0.3s; }
-  .section-header-intl { animation-delay: 0.5s; }
+  .sh-local { animation-delay: 0.3s; }
+  .sh-intl  { animation-delay: 0.5s; }
 
-  .section-flag {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-  }
+  .section-flag { font-size: 1.5rem; flex-shrink: 0; }
 
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .section-rule {
@@ -201,11 +182,9 @@
     background: linear-gradient(to right, var(--rule), transparent);
   }
 
-  /* Story Cards */
   .stories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 0;
     border: 1px solid var(--rule);
     margin-bottom: 2rem;
   }
@@ -215,31 +194,38 @@
     border-right: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     transition: background 0.2s;
-    animation: fadeUp 0.5s ease forwards;
-    opacity: 0;
+    animation: fadeUp 0.5s ease both;
   }
 
   .story-card:hover { background: var(--paper-dark); }
+  .story-card:nth-child(1) { animation-delay: 0.32s; }
+  .story-card:nth-child(2) { animation-delay: 0.38s; }
+  .story-card:nth-child(3) { animation-delay: 0.44s; }
+  .story-card:nth-child(4) { animation-delay: 0.50s; }
+  .story-card:nth-child(5) { animation-delay: 0.56s; }
+  .story-card:nth-child(6) { animation-delay: 0.62s; }
 
   .story-source {
     font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
+
+  .intl .story-source { color: var(--accent-warm); }
 
   .source-lang {
     background: var(--ink);
     color: var(--paper);
-    padding: 0.1rem 0.4rem;
+    padding: 0.1rem 0.35rem;
     border-radius: 2px;
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
   }
 
   .story-headline {
@@ -247,20 +233,19 @@
     font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 0.75rem;
-    color: var(--ink);
+    margin-bottom: 0.7rem;
   }
 
   .story-summary {
-    font-size: 0.875rem;
+    font-size: 0.86rem;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 1rem;
   }
 
   .story-link {
     font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
@@ -269,302 +254,214 @@
     transition: border-color 0.2s;
   }
 
-  .story-link:hover { border-color: var(--accent); }
-
-  /* International cards get different accent */
-  .intl .story-source { color: var(--accent-warm); }
   .intl .story-link { color: var(--accent-warm); }
-  .intl .story-link:hover { border-color: var(--accent-warm); }
+  .story-link:hover { border-color: currentColor; }
 
-  /* Update bar */
-  .update-bar {
-    background: var(--paper-dark);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 0.75rem 1.25rem;
-    margin: 2rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    animation: fadeUp 0.6s ease 0.7s forwards;
-    opacity: 0;
+  .ornament {
+    text-align: center;
+    color: var(--rule);
+    font-size: 1rem;
+    margin: 1rem 0;
+    letter-spacing: 0.8em;
   }
 
-  .update-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #2ecc71;
-    flex-shrink: 0;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  /* Telegram CTA */
   .cta-bar {
-    background: var(--local);
+    background: var(--navy);
     color: var(--paper);
-    padding: 2rem;
+    padding: 2rem 2.5rem;
     margin: 2rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
     flex-wrap: wrap;
-    animation: fadeUp 0.6s ease 0.8s forwards;
-    opacity: 0;
+    animation: fadeUp 0.6s ease 0.7s both;
   }
 
   .cta-text h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
-    margin-bottom: 0.25rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
   }
 
-  .cta-text p {
-    font-size: 0.85rem;
-    color: #a0b4c8;
-  }
+  .cta-text p { font-size: 0.85rem; color: #8aaac8; }
 
   .cta-btn {
     background: var(--accent);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.75rem;
     text-decoration: none;
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     white-space: nowrap;
     transition: background 0.2s;
+    flex-shrink: 0;
   }
 
-  .cta-btn:hover { background: #a93226; }
+  .cta-btn:hover { background: #a32822; }
 
-  /* Footer */
-  footer {
+  .site-footer {
     border-top: 3px double var(--rule);
-    padding: 2rem 0;
+    padding: 2rem 0 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
     font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     color: var(--muted);
     letter-spacing: 0.1em;
-    animation: fadeUp 0.6s ease 0.9s forwards;
-    opacity: 0;
+    animation: fadeUp 0.6s ease 0.8s both;
   }
-
-  footer a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  footer a:hover { color: var(--accent); }
 
   .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--accent); }
 
-  /* Animations */
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Stagger story cards */
-  .story-card:nth-child(1) { animation-delay: 0.35s; }
-  .story-card:nth-child(2) { animation-delay: 0.42s; }
-  .story-card:nth-child(3) { animation-delay: 0.49s; }
-  .story-card:nth-child(4) { animation-delay: 0.56s; }
-  .story-card:nth-child(5) { animation-delay: 0.63s; }
-  .story-card:nth-child(6) { animation-delay: 0.70s; }
-
-  /* Horizontal rule decoration */
-  .ornament {
-    text-align: center;
-    color: var(--rule);
-    font-size: 1.2rem;
-    margin: 1.5rem 0;
-    letter-spacing: 0.5em;
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 600px) {
     .stories-grid { grid-template-columns: 1fr; }
-    .masthead-meta { flex-wrap: wrap; gap: 0.75rem; }
+    .masthead-meta { gap: 0.75rem; }
     .cta-bar { flex-direction: column; text-align: center; }
+    nav { gap: 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- Masthead -->
-<div class="masthead">
+<header class="masthead">
   <div class="masthead-flag">// Independent Sri Lanka News Digest</div>
   <h1>Lanka <em>Lens</em></h1>
   <p class="masthead-sub">Curated daily from local and international sources</p>
   <div class="masthead-meta">
-    <span id="today-date">Friday, 27 February 2026</span>
-    <span class="divider">◆</span>
+    <span id="today-date"></span>
+    <span class="div">◆</span>
     <span>English · සිංහල · தமிழ்</span>
-    <span class="divider">◆</span>
+    <span class="div">◆</span>
     <span>7:00 AM Sri Lanka Time</span>
   </div>
-</div>
+</header>
 
-<!-- Navigation -->
 <nav>
   <a href="index.html" class="active">Today's Digest</a>
-  <a href="archive.html">Archive</a>
-  <a href="subscribe.html">Subscribe</a>
   <a href="about.html">About</a>
 </nav>
 
 <div class="container">
 
-  <!-- Live indicator -->
-  <div class="update-bar">
-    <div class="update-dot"></div>
-    <span>Last updated: <span id="last-updated">Today at 7:00 AM IST</span></span>
-    <span style="margin-left: auto;">Sources: Daily Mirror · Ada Derana · The Island · Divaina · Tamil Mirror · Thinakaran · Google News</span>
-  </div>
-
-  <!-- Top Stories -->
   <div class="top-stories">
     <div class="top-stories-label">📍 Top Stories Today</div>
-
     <div class="top-story-item">
       <div class="top-story-num">1</div>
-      <div class="top-story-text"><strong>Finance Ministry tables fresh tax hikes</strong> (Daily Mirror) — The government has proposed significant tax reforms, including increased capital gains taxes and a wider withholding tax net.</div>
+      <div class="top-story-text"><strong>Finance Ministry tables fresh tax hikes</strong> (Daily Mirror) — The government proposed sweeping tax reforms including increased capital gains taxes and a wider withholding tax net.</div>
     </div>
-
     <div class="top-story-item">
       <div class="top-story-num">2</div>
-      <div class="top-story-text"><strong>GMOA announces island-wide professional actions</strong> (Daily Mirror) — The Government Medical Officers' Association is initiating strikes after the government allegedly failed to honour written agreements on healthcare issues.</div>
+      <div class="top-story-text"><strong>GMOA announces island-wide professional actions</strong> (Daily Mirror) — The Government Medical Officers' Association is initiating strikes after the government allegedly failed to honour written agreements on healthcare.</div>
     </div>
-
     <div class="top-story-item">
       <div class="top-story-num">3</div>
       <div class="top-story-text"><strong>CEB engineers raise alarm over power sector stability</strong> (The Island) — Senior CEB engineers warn that unresolved structural issues could threaten the national grid's long-term stability.</div>
     </div>
-
   </div>
 
-  <!-- Local Coverage -->
-  <div class="section-header section-header-local">
+  <div class="section-header sh-local">
     <div class="section-flag">🇱🇰</div>
     <div class="section-title">Local Coverage</div>
     <div class="section-rule"></div>
   </div>
 
   <div class="stories-grid">
-
     <div class="story-card">
       <div class="story-source">Daily Mirror</div>
       <div class="story-headline">Finance Ministry tables fresh tax hikes</div>
       <div class="story-summary">The Government has tabled sweeping changes to Sri Lanka's tax framework, proposing higher taxes on capital gains, a wider net for withholding tax and a one-off relief window for those with unpaid dues.</div>
       <a href="https://www.dailymirror.lk/breaking-news/Finance-Ministry-tables-fresh-tax-hikes/108-334048" class="story-link" target="_blank">Read more →</a>
     </div>
-
     <div class="story-card">
       <div class="story-source">Daily Mirror</div>
       <div class="story-headline">GMOA announces series of island-wide professional actions</div>
-      <div class="story-summary">The Government Medical Officers' Association has decided to launch a series of island-wide professional actions, alleging that the government has failed to honour written agreements aimed at resolving longstanding healthcare issues.</div>
+      <div class="story-summary">The Government Medical Officers' Association has decided to launch island-wide professional actions, alleging the government failed to honour written agreements on healthcare issues.</div>
       <a href="https://www.dailymirror.lk/breaking-news/GMOA-announces-series-of-island-wide-professional-actions/108-334079" class="story-link" target="_blank">Read more →</a>
     </div>
-
     <div class="story-card">
       <div class="story-source">The Island</div>
       <div class="story-headline">CEB engineers raise alarm over power sector stability</div>
-      <div class="story-summary">Senior Ceylon Electricity Board engineers have warned that unresolved structural and policy issues within the power sector could threaten the long-term stability of the national grid.</div>
+      <div class="story-summary">Senior Ceylon Electricity Board engineers have warned that unresolved structural and policy issues could threaten the long-term stability of the national grid.</div>
       <a href="http://island.lk/ceb-engineers-raise-alarm-over-power-sector-stability/" class="story-link" target="_blank">Read more →</a>
     </div>
-
     <div class="story-card">
       <div class="story-source">The Island</div>
       <div class="story-headline">CB identifies 24 pyramid scams in Sri Lanka</div>
       <div class="story-summary">The Central Bank has announced that investigations identified 24 companies and applications operating prohibited pyramid schemes across Sri Lanka.</div>
       <a href="http://island.lk/cb-identifies-24-pyramid-scams-in-sri-lanka/" class="story-link" target="_blank">Read more →</a>
     </div>
-
-    <div class="story-card">
-      <div class="story-source">Daily Mirror</div>
-      <div class="story-headline">Validity of footwear gift vouchers for school students extended</div>
-      <div class="story-summary">The validity period of the footwear gift voucher programme for selected school students has been extended by the government.</div>
-      <a href="https://www.dailymirror.lk/breaking-news/Validity-of-footwear-gift-vouchers-for-school-students-extended/108-334084" class="story-link" target="_blank">Read more →</a>
-    </div>
-
     <div class="story-card">
       <div class="story-source">Divaina <span class="source-lang">Sinhala</span></div>
       <div class="story-headline">Major crime figure 'Podi Lassi' brought to Sri Lanka from India</div>
-      <div class="story-summary">Organised crime figure and drug trafficker Janith Madushanka de Silva, known as 'Podi Lassi', has been brought to Sri Lanka from India and handed over to the Galle District Crime Division.</div>
+      <div class="story-summary">Organised crime figure Janith Madushanka de Silva, known as 'Podi Lassi', has been brought to Sri Lanka from India and handed to the Galle District Crime Division.</div>
       <a href="https://www.divaina.lk/breaking-news/63882" class="story-link" target="_blank">Read more →</a>
     </div>
-
+    <div class="story-card">
+      <div class="story-source">Tamil Mirror <span class="source-lang">Tamil</span></div>
+      <div class="story-headline">Katchatheevu St. Anthony's Festival begins today</div>
+      <div class="story-summary">The annual St. Anthony's Church festival at Katchatheevu island has commenced, drawing pilgrims from across Sri Lanka and India to the historic site.</div>
+      <a href="https://www.tamilmirror.lk/செய்திகள்/கச்சதீவு-அந்தோனியார்-திருவிழா-இன்று-ஆரம்பம்/175-373094" class="story-link" target="_blank">Read more →</a>
+    </div>
   </div>
 
   <div class="ornament">— ◆ —</div>
 
-  <!-- International View -->
-  <div class="section-header section-header-intl">
+  <div class="section-header sh-intl">
     <div class="section-flag">🌍</div>
     <div class="section-title">International View</div>
     <div class="section-rule"></div>
   </div>
 
   <div class="stories-grid">
-
     <div class="story-card intl">
-      <div class="story-source">Al Jazeera · Reuters</div>
+      <div class="story-source">Al Jazeera · Reuters · France 24</div>
       <div class="story-headline">Sri Lanka's former intelligence chief arrested over 2019 Easter attacks</div>
-      <div class="story-summary">Sri Lanka's former intelligence chief has been arrested in connection with the 2019 Easter Sunday attacks that killed over 250 people. The arrest marks a significant development in the ongoing investigation.</div>
+      <div class="story-summary">Sri Lanka's former intelligence chief has been arrested in connection with the 2019 Easter Sunday attacks that killed over 250 people, marking a significant development in the ongoing investigation.</div>
       <a href="https://www.aljazeera.com/news/2026/2/26/sri-lankas-former-intelligence-chief-arrested" class="story-link" target="_blank">Read more →</a>
     </div>
-
   </div>
 
-  <!-- Telegram CTA -->
   <div class="cta-bar">
     <div class="cta-text">
       <h3>Get this digest every morning at 7 AM</h3>
-      <p>Subscribe via Telegram — free, no ads, unsubscribe anytime.</p>
+      <p>Free, no ads, unsubscribe anytime. English, Sinhala and Tamil sources.</p>
     </div>
-    <a href="https://t.me/your_bot_username" class="cta-btn">Subscribe on Telegram →</a>
+    <a href="https://t.me/sl_news_digest_bot" class="cta-btn">Subscribe on Telegram →</a>
   </div>
 
-</div>
-
-<!-- Footer -->
-<div class="container">
-  <footer>
+  <footer class="site-footer">
     <span>Lanka Lens · Independent Sri Lanka News Digest</span>
     <div class="footer-links">
-      <a href="about.html">About & Costs</a>
-      <a href="subscribe.html">Subscribe</a>
-      <a href="#">Submit feedback</a>
+      <a href="about.html">About</a>
+      <a href="https://t.me/sl_news_digest_bot">Subscribe</a>
     </div>
   </footer>
+
 </div>
 
 <script>
-  // Update date dynamically
   const dateEl = document.getElementById('today-date');
   const now = new Date();
-  dateEl.textContent = now.toLocaleDateString('en-LK', { 
+  dateEl.textContent = now.toLocaleDateString('en-LK', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
     timeZone: 'Asia/Colombo'
   });

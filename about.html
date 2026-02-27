@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Lanka Lens — Transparency & Costs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --paper: #f5f0e8;
+    --paper-dark: #ede7d5;
+    --accent: #c0392b;
+    --accent-warm: #e67e22;
+    --gold: #b8860b;
+    --muted: #6b6050;
+    --rule: #c9bfa8;
+    --local: #1a3a5c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    border-bottom: 4px solid var(--accent);
+  }
+
+  .masthead-flag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .masthead h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+  }
+
+  .masthead h1 em { font-style: italic; color: #e8d5b0; }
+
+  nav {
+    background: var(--paper-dark);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.6rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-header {
+    padding: 3rem 0 2rem;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .page-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-style: italic;
+    max-width: 560px;
+  }
+
+  /* Sections */
+  .about-section {
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .about-section:nth-child(1) { animation-delay: 0.1s; }
+  .about-section:nth-child(2) { animation-delay: 0.2s; }
+  .about-section:nth-child(3) { animation-delay: 0.3s; }
+  .about-section:nth-child(4) { animation-delay: 0.4s; }
+  .about-section:nth-child(5) { animation-delay: 0.5s; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .about-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .about-section p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .about-section p:last-child { margin-bottom: 0; }
+
+  /* Cost table */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.875rem;
+  }
+
+  .cost-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .cost-table td {
+    padding: 0.75rem 1rem 0.75rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    vertical-align: top;
+  }
+
+  .cost-table td:last-child {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .cost-total {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+
+  .cost-total strong {
+    color: var(--ink);
+    font-size: 0.9rem;
+  }
+
+  /* Tech stack */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+
+  .stack-item {
+    background: var(--paper-dark);
+    border: 1px solid var(--rule);
+    padding: 1rem;
+  }
+
+  .stack-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .stack-role {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Roadmap */
+  .roadmap-phase {
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .phase-items {
+    list-style: none;
+    border-left: 2px solid var(--rule);
+    padding-left: 1.25rem;
+  }
+
+  .phase-items li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding: 0.25rem 0;
+    position: relative;
+  }
+
+  .phase-items li::before {
+    content: '';
+    position: absolute;
+    left: -1.4rem;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+
+  .phase-items li.done { color: var(--ink); }
+  .phase-items li.done::before { background: var(--accent); }
+
+  /* Limitations */
+  .limitations-list {
+    list-style: none;
+  }
+
+  .limitations-list li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .limitations-list li::before {
+    content: '⚠';
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  /* Support */
+  .support-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem;
+    margin: 1.25rem 0;
+  }
+
+  .support-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .support-box p {
+    font-size: 0.875rem;
+    color: #a09070;
+    margin-bottom: 1.25rem;
+  }
+
+  .support-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .support-btn:hover { background: #a93226; }
+
+  /* Builder note */
+  .builder-note {
+    background: var(--paper-dark);
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  footer {
+    border-top: 3px double var(--rule);
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 2rem;
+  }
+
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-flag">// Independent Sri Lanka News Digest</div>
+  <h1>Lanka <em>Lens</em></h1>
+</div>
+
+<nav>
+  <a href="index.html">Today's Digest</a>
+  <a href="archive.html">Archive</a>
+  <a href="subscribe.html">Subscribe</a>
+  <a href="about.html" class="active">About</a>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="page-tag">// Transparency</div>
+    <h2>About Lanka Lens</h2>
+    <p>A public account of what this is, how it works, what it costs, and where it's going.</p>
+  </div>
+
+  <!-- Why -->
+  <div class="about-section">
+    <div class="section-label">Origin</div>
+    <h3>Why this exists</h3>
+    <p>Sri Lanka has no shortage of news. What it lacks is a single, accessible, multilingual digest that pulls from Sinhala, Tamil, and English sources simultaneously — without the political noise of any single outlet.</p>
+    <p>Lanka Lens started as a personal project. I found myself spending too much time navigating multiple news sites, Instagram pages, and WhatsApp forwards every morning. This bot does that work automatically.</p>
+    <div class="builder-note">
+      "I mainly follow a few Instagram pages owned by some news outlets. Google News is not optimised for regional granularity. Sometimes I'd read an article but not have the full context." — DatVicious, builder
+    </div>
+    <p>The bot is free to use. It will stay free as long as it's viable to run.</p>
+  </div>
+
+  <!-- Costs -->
+  <div class="about-section">
+    <div class="section-label">Financials</div>
+    <h3>What it costs to run</h3>
+    <p>Full transparency on operational costs, updated monthly.</p>
+
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>What it does</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Gemini API</td>
+          <td>AI summarisation and translation</td>
+          <td>Free (1,000 req/day)</td>
+        </tr>
+        <tr>
+          <td>Railway</td>
+          <td>Bot hosting — runs 24/7</td>
+          <td>~$5/month</td>
+        </tr>
+        <tr>
+          <td>Supabase</td>
+          <td>Subscriber database</td>
+          <td>Free tier</td>
+        </tr>
+        <tr>
+          <td>GitHub Pages</td>
+          <td>This website</td>
+          <td>Free</td>
+        </tr>
+        <tr>
+          <td>Domain (future)</td>
+          <td>Custom URL</td>
+          <td>~$12/year</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="cost-total">Current monthly cost: <strong>~$5 USD</strong></p>
+    <p>If subscriber numbers grow significantly, costs will increase — particularly hosting and API usage. Any donations go directly toward keeping the bot running.</p>
+  </div>
+
+  <!-- Stack -->
+  <div class="about-section">
+    <div class="section-label">Technology</div>
+    <h3>How it's built</h3>
+    <p>Fully open source. Built in Python, deployed on Railway, data stored in Supabase.</p>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-name">Python</div>
+        <div class="stack-role">Core language for the bot and fetcher</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">feedparser</div>
+        <div class="stack-role">RSS feed parsing from 8 news sources</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Google Gemini</div>
+        <div class="stack-role">AI translation, summarisation, deduplication</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">python-telegram-bot</div>
+        <div class="stack-role">Telegram bot framework</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Supabase</div>
+        <div class="stack-role">PostgreSQL database for subscribers</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">Railway</div>
+        <div class="stack-role">Cloud hosting and deployment</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-name">GitHub Pages</div>
+        <div class="stack-role">This website</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Limitations -->
+  <div class="about-section">
+    <div class="section-label">Honesty</div>
+    <h3>Known limitations</h3>
+    <ul class="limitations-list">
+      <li>AI translation of Sinhala and Tamil is imperfect. Translations are functional but may miss nuance.</li>
+      <li>Some news sites block RSS fetching. Economy Next, Virakesari, and Hiru News are not yet included.</li>
+      <li>The AI occasionally produces duplicate stories or misidentifies story relevance.</li>
+      <li>Stories are filtered to the last 36 hours. Breaking news that occurs after the 7AM digest will not appear until the next day.</li>
+      <li>All news sources carry editorial bias. Lanka Lens does not currently rate or label outlet bias — this is a planned feature.</li>
+      <li>Cookie consent walls on some sites prevent full article fetching via Jina AI.</li>
+    </ul>
+  </div>
+
+  <!-- Roadmap -->
+  <div class="about-section">
+    <div class="section-label">What's next</div>
+    <h3>Roadmap</h3>
+
+    <div class="roadmap-phase">
+      <div class="phase-label">Phase 1 — Current</div>
+      <ul class="phase-items">
+        <li class="done">English, Sinhala, and Tamil source coverage</li>
+        <li class="done">Daily 7AM Telegram digest</li>
+        <li class="done">Local and international sections</li>
+        <li class="done">Web view (this site)</li>
+        <li>Prompt refinement and deduplication improvements</li>
+        <li>Bug and feature request form</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-label">Phase 2</div>
+      <ul class="phase-items">
+        <li>User-configurable digest time (for diaspora)</li>
+        <li>Digest archive — browse past editions</li>
+        <li>Topic timeline — track how a story develops over time</li>
+        <li>Model upgrade for better summarisation</li>
+        <li>WhatsApp bot</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-label">Phase 3</div>
+      <ul class="phase-items">
+        <li>Outlet bias and framing analysis</li>
+        <li>Facebook Messenger bot</li>
+        <li>Economics digest section</li>
+        <li>Local events and announcements</li>
+        <li>Tamil-language output option</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Support -->
+  <div class="about-section">
+    <div class="section-label">Support</div>
+    <h3>Keep it running</h3>
+    <p>Lanka Lens runs on about $5/month. If you find it useful, a small contribution helps cover hosting costs and keep it going.</p>
+    <div class="support-box">
+      <h4>Buy me a coffee</h4>
+      <p>Every contribution, no matter how small, goes directly toward server costs. No investors, no ads, no agenda.</p>
+      <a href="#" class="support-btn">Support Lanka Lens →</a>
+    </div>
+    <p>You can also help by sharing the bot with friends, reporting bugs, and suggesting improvements.</p>
+  </div>
+
+</div>
+
+<div class="container">
+  <footer>
+    <span>Lanka Lens · Built by DatVicious · Sri Lanka</span>
+    <div class="footer-links">
+      <a href="index.html">Today's Digest</a>
+      <a href="#">Submit feedback</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>

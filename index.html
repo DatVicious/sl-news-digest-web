@@ -88,7 +88,6 @@
     display: flex;
     justify-content: center;
     gap: 2.5rem;
-    animation: fadeDown 0.7s ease 0.1s both;
   }
 
   nav a {
@@ -111,13 +110,40 @@
     padding: 0 1.5rem;
   }
 
+  /* Loading state */
+  .loading {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+
+  .loading-dot {
+    display: inline-block;
+    animation: blink 1.2s infinite;
+  }
+
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  /* Error state */
+  .error-msg {
+    text-align: center;
+    padding: 3rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  /* Top Stories */
   .top-stories {
     background: var(--ink);
     color: var(--paper);
     padding: 1.75rem 2rem;
     margin: 2rem 0;
     border-left: 5px solid var(--accent);
-    animation: fadeUp 0.6s ease 0.2s both;
   }
 
   .top-stories-label {
@@ -154,16 +180,13 @@
   .top-story-text { color: #ddd4be; }
   .top-story-text strong { color: var(--paper); font-weight: 600; }
 
+  /* Section Headers */
   .section-header {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin: 2.5rem 0 1.5rem;
-    animation: fadeUp 0.6s ease both;
   }
-
-  .sh-local { animation-delay: 0.3s; }
-  .sh-intl  { animation-delay: 0.5s; }
 
   .section-flag { font-size: 1.5rem; flex-shrink: 0; }
 
@@ -182,6 +205,7 @@
     background: linear-gradient(to right, var(--rule), transparent);
   }
 
+  /* Story Grid */
   .stories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -194,16 +218,9 @@
     border-right: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     transition: background 0.2s;
-    animation: fadeUp 0.5s ease both;
   }
 
   .story-card:hover { background: var(--paper-dark); }
-  .story-card:nth-child(1) { animation-delay: 0.32s; }
-  .story-card:nth-child(2) { animation-delay: 0.38s; }
-  .story-card:nth-child(3) { animation-delay: 0.44s; }
-  .story-card:nth-child(4) { animation-delay: 0.50s; }
-  .story-card:nth-child(5) { animation-delay: 0.56s; }
-  .story-card:nth-child(6) { animation-delay: 0.62s; }
 
   .story-source {
     font-family: 'DM Mono', monospace;
@@ -265,6 +282,7 @@
     letter-spacing: 0.8em;
   }
 
+  /* CTA */
   .cta-bar {
     background: var(--navy);
     color: var(--paper);
@@ -275,7 +293,6 @@
     justify-content: space-between;
     gap: 1.5rem;
     flex-wrap: wrap;
-    animation: fadeUp 0.6s ease 0.7s both;
   }
 
   .cta-text h3 {
@@ -303,6 +320,7 @@
 
   .cta-btn:hover { background: #a32822; }
 
+  /* Footer */
   .site-footer {
     border-top: 3px double var(--rule);
     padding: 2rem 0 3rem;
@@ -315,7 +333,6 @@
     font-size: 0.62rem;
     color: var(--muted);
     letter-spacing: 0.1em;
-    animation: fadeUp 0.6s ease 0.8s both;
   }
 
   .footer-links { display: flex; gap: 1.5rem; }
@@ -330,6 +347,11 @@
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   @media (max-width: 600px) {
@@ -351,7 +373,7 @@
     <span class="div">◆</span>
     <span>English · සිංහල · தமிழ்</span>
     <span class="div">◆</span>
-    <span>7:00 AM Sri Lanka Time</span>
+    <span>7:00 AM & 6:00 PM Sri Lanka Time</span>
   </div>
 </header>
 
@@ -361,82 +383,12 @@
 </nav>
 
 <div class="container">
-
-  <div class="top-stories">
-    <div class="top-stories-label">📍 Top Stories Today</div>
-    <div class="top-story-item">
-      <div class="top-story-num">1</div>
-      <div class="top-story-text"><strong>Finance Ministry tables fresh tax hikes</strong> (Daily Mirror) — The government proposed sweeping tax reforms including increased capital gains taxes and a wider withholding tax net.</div>
-    </div>
-    <div class="top-story-item">
-      <div class="top-story-num">2</div>
-      <div class="top-story-text"><strong>GMOA announces island-wide professional actions</strong> (Daily Mirror) — The Government Medical Officers' Association is initiating strikes after the government allegedly failed to honour written agreements on healthcare.</div>
-    </div>
-    <div class="top-story-item">
-      <div class="top-story-num">3</div>
-      <div class="top-story-text"><strong>CEB engineers raise alarm over power sector stability</strong> (The Island) — Senior CEB engineers warn that unresolved structural issues could threaten the national grid's long-term stability.</div>
-    </div>
-  </div>
-
-  <div class="section-header sh-local">
-    <div class="section-flag">🇱🇰</div>
-    <div class="section-title">Local Coverage</div>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="stories-grid">
-    <div class="story-card">
-      <div class="story-source">Daily Mirror</div>
-      <div class="story-headline">Finance Ministry tables fresh tax hikes</div>
-      <div class="story-summary">The Government has tabled sweeping changes to Sri Lanka's tax framework, proposing higher taxes on capital gains, a wider net for withholding tax and a one-off relief window for those with unpaid dues.</div>
-      <a href="https://www.dailymirror.lk/breaking-news/Finance-Ministry-tables-fresh-tax-hikes/108-334048" class="story-link" target="_blank">Read more →</a>
-    </div>
-    <div class="story-card">
-      <div class="story-source">Daily Mirror</div>
-      <div class="story-headline">GMOA announces series of island-wide professional actions</div>
-      <div class="story-summary">The Government Medical Officers' Association has decided to launch island-wide professional actions, alleging the government failed to honour written agreements on healthcare issues.</div>
-      <a href="https://www.dailymirror.lk/breaking-news/GMOA-announces-series-of-island-wide-professional-actions/108-334079" class="story-link" target="_blank">Read more →</a>
-    </div>
-    <div class="story-card">
-      <div class="story-source">The Island</div>
-      <div class="story-headline">CEB engineers raise alarm over power sector stability</div>
-      <div class="story-summary">Senior Ceylon Electricity Board engineers have warned that unresolved structural and policy issues could threaten the long-term stability of the national grid.</div>
-      <a href="http://island.lk/ceb-engineers-raise-alarm-over-power-sector-stability/" class="story-link" target="_blank">Read more →</a>
-    </div>
-    <div class="story-card">
-      <div class="story-source">The Island</div>
-      <div class="story-headline">CB identifies 24 pyramid scams in Sri Lanka</div>
-      <div class="story-summary">The Central Bank has announced that investigations identified 24 companies and applications operating prohibited pyramid schemes across Sri Lanka.</div>
-      <a href="http://island.lk/cb-identifies-24-pyramid-scams-in-sri-lanka/" class="story-link" target="_blank">Read more →</a>
-    </div>
-    <div class="story-card">
-      <div class="story-source">Divaina <span class="source-lang">Sinhala</span></div>
-      <div class="story-headline">Major crime figure 'Podi Lassi' brought to Sri Lanka from India</div>
-      <div class="story-summary">Organised crime figure Janith Madushanka de Silva, known as 'Podi Lassi', has been brought to Sri Lanka from India and handed to the Galle District Crime Division.</div>
-      <a href="https://www.divaina.lk/breaking-news/63882" class="story-link" target="_blank">Read more →</a>
-    </div>
-    <div class="story-card">
-      <div class="story-source">Tamil Mirror <span class="source-lang">Tamil</span></div>
-      <div class="story-headline">Katchatheevu St. Anthony's Festival begins today</div>
-      <div class="story-summary">The annual St. Anthony's Church festival at Katchatheevu island has commenced, drawing pilgrims from across Sri Lanka and India to the historic site.</div>
-      <a href="https://www.tamilmirror.lk/செய்திகள்/கச்சதீவு-அந்தோனியார்-திருவிழா-இன்று-ஆரம்பம்/175-373094" class="story-link" target="_blank">Read more →</a>
-    </div>
-  </div>
-
-  <div class="ornament">— ◆ —</div>
-
-  <div class="section-header sh-intl">
-    <div class="section-flag">🌍</div>
-    <div class="section-title">International View</div>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="stories-grid">
-    <div class="story-card intl">
-      <div class="story-source">Al Jazeera · Reuters · France 24</div>
-      <div class="story-headline">Sri Lanka's former intelligence chief arrested over 2019 Easter attacks</div>
-      <div class="story-summary">Sri Lanka's former intelligence chief has been arrested in connection with the 2019 Easter Sunday attacks that killed over 250 people, marking a significant development in the ongoing investigation.</div>
-      <a href="https://www.aljazeera.com/news/2026/2/26/sri-lankas-former-intelligence-chief-arrested" class="story-link" target="_blank">Read more →</a>
+  <div id="digest-content">
+    <div class="loading">
+      Fetching today's digest
+      <span class="loading-dot">.</span>
+      <span class="loading-dot">.</span>
+      <span class="loading-dot">.</span>
     </div>
   </div>
 
@@ -453,19 +405,118 @@
     <div class="footer-links">
       <a href="about.html">About</a>
       <a href="https://t.me/sl_news_digest_bot">Subscribe</a>
-      <a href="https://forms.gle/GtKzmqKJagrFpkPCA">Submit feedback</a>
     </div>
   </footer>
-
 </div>
 
 <script>
+  // Set today's date
   const dateEl = document.getElementById('today-date');
   const now = new Date();
   dateEl.textContent = now.toLocaleDateString('en-LK', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
     timeZone: 'Asia/Colombo'
   });
+
+  // Supabase credentials
+  const SUPABASE_URL = 'https://skxyfimrocvifqvjumhs.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNreHlmaW1yb2N2aWZxdmp1bWhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMDU4NDMsImV4cCI6MjA4NzY4MTg0M30.Idu07SNxx2Kuz1jkc7FKAZe4PVor8nLpRBVsFIJJ4UY';
+
+  async function loadDigest() {
+    const container = document.getElementById('digest-content');
+
+    try {
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/digests?order=date.desc&limit=1`,
+        {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        }
+      );
+
+      const rows = await response.json();
+
+      if (!rows || rows.length === 0) {
+        container.innerHTML = '<div class="error-msg">No digest available yet. Check back after 7 AM Sri Lanka time.</div>';
+        return;
+      }
+
+      const data = JSON.parse(rows[0].content);
+      container.innerHTML = renderDigest(data);
+
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = '<div class="error-msg">Could not load digest. Please try again later.</div>';
+    }
+  }
+
+  function renderDigest(data) {
+    let html = '';
+
+    // Top Stories
+    html += `<div class="top-stories">`;
+    html += `<div class="top-stories-label">📍 Top Stories Today</div>`;
+    data.top_stories.forEach((story, i) => {
+      html += `
+        <div class="top-story-item">
+          <div class="top-story-num">${i + 1}</div>
+          <div class="top-story-text"><strong>${story.headline}</strong> (${story.source}) — ${story.summary}</div>
+        </div>`;
+    });
+    html += `</div>`;
+
+    // Local Coverage
+    html += `
+      <div class="section-header">
+        <div class="section-flag">🇱🇰</div>
+        <div class="section-title">Local Coverage</div>
+        <div class="section-rule"></div>
+      </div>
+      <div class="stories-grid">`;
+
+    data.local.forEach(story => {
+      const langTag = story.language === 'si'
+        ? '<span class="source-lang">Sinhala</span>'
+        : story.language === 'ta'
+        ? '<span class="source-lang">Tamil</span>'
+        : '';
+      html += `
+        <div class="story-card">
+          <div class="story-source">${story.source} ${langTag}</div>
+          <div class="story-headline">${story.headline}</div>
+          <div class="story-summary">${story.summary}</div>
+          <a href="${story.link}" class="story-link" target="_blank">Read more →</a>
+        </div>`;
+    });
+
+    html += `</div><div class="ornament">— ◆ —</div>`;
+
+    // International
+    html += `
+      <div class="section-header">
+        <div class="section-flag">🌍</div>
+        <div class="section-title">International View</div>
+        <div class="section-rule"></div>
+      </div>
+      <div class="stories-grid">`;
+
+    data.international.forEach(story => {
+      html += `
+        <div class="story-card intl">
+          <div class="story-source">${story.source}</div>
+          <div class="story-headline">${story.headline}</div>
+          <div class="story-summary">${story.summary}</div>
+          <a href="${story.link}" class="story-link" target="_blank">Read more →</a>
+        </div>`;
+    });
+
+    html += `</div>`;
+    return html;
+  }
+
+  loadDigest();
 </script>
 
 </body>

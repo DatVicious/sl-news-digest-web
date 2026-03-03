@@ -11,7 +11,7 @@
     --paper: #f5f0e8;
     --paper-dark: #ede7d5;
     --accent: #c0392b;
-    --muted: #6b6050;
+    --muted: #4a3f32;
     --rule: #c9bfa8;
     --navy: #1a3a5c;
   }
@@ -19,10 +19,11 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
     color: var(--ink);
     font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
   }
 
@@ -112,6 +113,7 @@
     font-size: 1rem;
     color: var(--muted);
     font-style: italic;
+    font-weight: 400;
   }
 
   .about-section {
@@ -155,6 +157,7 @@
   .about-section p {
     font-size: 0.95rem;
     color: var(--muted);
+    font-weight: 400;
     margin-bottom: 0.75rem;
   }
 
@@ -166,9 +169,9 @@
     font-style: italic;
     font-size: 0.9rem;
     color: var(--muted);
+    font-weight: 400;
   }
 
-  /* Cost table */
   .cost-table {
     width: 100%;
     border-collapse: collapse;
@@ -193,6 +196,7 @@
     color: var(--ink);
     vertical-align: top;
     font-size: 0.875rem;
+    font-weight: 400;
   }
 
   .cost-table td:last-child {
@@ -212,7 +216,6 @@
 
   .cost-note strong { color: var(--ink); }
 
-  /* Model upgrade box */
   .upgrade-box {
     background: var(--paper-dark);
     border: 1px solid var(--rule);
@@ -269,9 +272,9 @@
     color: var(--muted);
     flex: 1;
     text-align: right;
+    font-weight: 400;
   }
 
-  /* Stack grid */
   .stack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -292,9 +295,8 @@
     margin-bottom: 0.3rem;
   }
 
-  .stack-role { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+  .stack-role { font-size: 0.8rem; color: var(--muted); line-height: 1.4; font-weight: 400; }
 
-  /* Roadmap */
   .roadmap-phase { margin-bottom: 1.5rem; }
 
   .phase-label {
@@ -317,6 +319,7 @@
     color: var(--muted);
     padding: 0.25rem 0;
     position: relative;
+    font-weight: 400;
   }
 
   .phase-items li::before {
@@ -330,10 +333,9 @@
     background: var(--rule);
   }
 
-  .phase-items li.done { color: var(--ink); }
+  .phase-items li.done { color: var(--ink); font-weight: 400; }
   .phase-items li.done::before { background: var(--accent); }
 
-  /* Limitations */
   .limitations-list { list-style: none; }
 
   .limitations-list li {
@@ -344,11 +346,11 @@
     display: flex;
     gap: 0.75rem;
     align-items: baseline;
+    font-weight: 400;
   }
 
   .limitations-list li::before { content: '⚠'; font-size: 0.75rem; flex-shrink: 0; }
 
-  /* Sources list */
   .sources-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -371,12 +373,8 @@
     color: var(--ink);
   }
 
-  .source-item-lang {
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
+  .source-item-lang { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
 
-  /* Footer */
   .site-footer {
     border-top: 3px double var(--rule);
     padding: 2rem 0 3rem;
@@ -392,7 +390,7 @@
     margin-top: 2rem;
   }
 
-  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .footer-links a { color: var(--muted); text-decoration: none; }
   .footer-links a:hover { color: var(--accent); }
 
@@ -428,7 +426,6 @@
     <p>A public account of what this is, how it works, what it costs, and where it's going.</p>
   </div>
 
-  <!-- Why -->
   <div class="about-section">
     <div class="section-label">Origin</div>
     <h3>Why this exists</h3>
@@ -440,90 +437,39 @@
     <p>The digest is free to use and will stay free as long as it's viable to run. I will ask for donations later.</p>
   </div>
 
-  <!-- Sources -->
   <div class="about-section">
     <div class="section-label">Sources</div>
     <h3>Where the news comes from</h3>
     <p>Lanka Lens pulls from 9 RSS feeds across three languages. Stories are translated, merged, and summarised by AI before delivery.</p>
     <div class="sources-grid">
-      <div class="source-item">
-        <div class="source-item-name">Daily Mirror</div>
-        <div class="source-item-lang">English</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">The Island</div>
-        <div class="source-item-lang">English</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">Economy Next</div>
-        <div class="source-item-lang">English</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">Ada Derana</div>
-        <div class="source-item-lang">සිංහල</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">NEWSWIRE</div>
-        <div class="source-item-lang">English</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">Divaina</div>
-        <div class="source-item-lang">සිංහල</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">Tamil Mirror</div>
-        <div class="source-item-lang">தமிழ்</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">Thinakaran</div>
-        <div class="source-item-lang">தமிழ்</div>
-      </div>
-      <div class="source-item">
-        <div class="source-item-name">Google News</div>
-        <div class="source-item-lang">English · International</div>
-      </div>
+      <div class="source-item"><div class="source-item-name">Daily Mirror</div><div class="source-item-lang">English</div></div>
+      <div class="source-item"><div class="source-item-name">The Island</div><div class="source-item-lang">English</div></div>
+      <div class="source-item"><div class="source-item-name">Economy Next</div><div class="source-item-lang">English</div></div>
+      <div class="source-item"><div class="source-item-name">Ada Derana</div><div class="source-item-lang">සිංහල</div></div>
+      <div class="source-item"><div class="source-item-name">NEWSWIRE</div><div class="source-item-lang">English</div></div>
+      <div class="source-item"><div class="source-item-name">Divaina</div><div class="source-item-lang">සිංහල</div></div>
+      <div class="source-item"><div class="source-item-name">Tamil Mirror</div><div class="source-item-lang">தமிழ்</div></div>
+      <div class="source-item"><div class="source-item-name">Thinakaran</div><div class="source-item-lang">தமிழ்</div></div>
+      <div class="source-item"><div class="source-item-name">Google News</div><div class="source-item-lang">English · International</div></div>
     </div>
   </div>
 
-  <!-- Costs -->
   <div class="about-section">
     <div class="section-label">Financials</div>
     <h3>What it costs to run</h3>
     <p>Full transparency on operational costs.</p>
-
     <table class="cost-table">
       <thead>
-        <tr>
-          <th>Service</th>
-          <th>What it does</th>
-          <th>Cost</th>
-        </tr>
+        <tr><th>Service</th><th>What it does</th><th>Cost</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Google Gemini API</td>
-          <td>AI summarisation and translation</td>
-          <td>Free (1,000 req/day)</td>
-        </tr>
-        <tr>
-          <td>Railway</td>
-          <td>Bot hosting — runs 24/7</td>
-          <td>~$5 / month</td>
-        </tr>
-        <tr>
-          <td>Supabase</td>
-          <td>Subscriber database</td>
-          <td>Free tier</td>
-        </tr>
-        <tr>
-          <td>GitHub Pages</td>
-          <td>This website</td>
-          <td>Free</td>
-        </tr>
+        <tr><td>Google Gemini API</td><td>AI summarisation and translation</td><td>Free (1,000 req/day)</td></tr>
+        <tr><td>Railway</td><td>Bot hosting — runs 24/7</td><td>~$5 / month</td></tr>
+        <tr><td>Supabase</td><td>Subscriber database</td><td>Free tier</td></tr>
+        <tr><td>GitHub Pages</td><td>This website</td><td>Free</td></tr>
       </tbody>
     </table>
     <p class="cost-note">Current monthly cost: <strong>~$5 USD</strong></p>
-
     <div class="upgrade-box">
       <h4>Current AI Model & Planned Upgrades</h4>
       <div class="model-row">
@@ -548,40 +494,20 @@
     </div>
   </div>
 
-  <!-- Tech Stack -->
   <div class="about-section">
     <div class="section-label">Technology</div>
     <h3>How it's built</h3>
     <p>Built in Python. Open source on GitHub.</p>
     <div class="stack-grid">
-      <div class="stack-item">
-        <div class="stack-name">Python</div>
-        <div class="stack-role">Core language for the bot and fetcher</div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-name">feedparser</div>
-        <div class="stack-role">RSS feed parsing from 9 sources</div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-name">Google Gemini</div>
-        <div class="stack-role">AI translation, summarisation, deduplication</div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-name">python-telegram-bot</div>
-        <div class="stack-role">Telegram bot framework</div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-name">Supabase</div>
-        <div class="stack-role">PostgreSQL subscriber database</div>
-      </div>
-      <div class="stack-item">
-        <div class="stack-name">Railway</div>
-        <div class="stack-role">24/7 cloud hosting</div>
-      </div>
+      <div class="stack-item"><div class="stack-name">Python</div><div class="stack-role">Core language for the bot and fetcher</div></div>
+      <div class="stack-item"><div class="stack-name">feedparser</div><div class="stack-role">RSS feed parsing from 9 sources</div></div>
+      <div class="stack-item"><div class="stack-name">Google Gemini</div><div class="stack-role">AI translation, summarisation, deduplication</div></div>
+      <div class="stack-item"><div class="stack-name">python-telegram-bot</div><div class="stack-role">Telegram bot framework</div></div>
+      <div class="stack-item"><div class="stack-name">Supabase</div><div class="stack-role">PostgreSQL subscriber database</div></div>
+      <div class="stack-item"><div class="stack-name">Railway</div><div class="stack-role">24/7 cloud hosting</div></div>
     </div>
   </div>
 
-  <!-- Limitations -->
   <div class="about-section">
     <div class="section-label">Honesty</div>
     <h3>Known limitations</h3>
@@ -594,7 +520,6 @@
     </ul>
   </div>
 
-  <!-- Roadmap -->
   <div class="about-section">
     <div class="section-label">What's next</div>
     <h3>Roadmap</h3>
@@ -634,8 +559,8 @@
     <span>Lanka Lens · Built by DatVicious · Sri Lanka</span>
     <div class="footer-links">
       <a href="index.html">Today's Digest</a>
-      <a href="https://t.me/sl_news_digest_bot">Subscribe</a>
-      <a href="https://forms.gle/GtKzmqKJagrFpkPCA">Submit feedback</a>
+      <a href="https://t.me/sl_news_digest_bot" target="_blank">Subscribe</a>
+      <a href="https://forms.gle/bh9XXhY5QjifFD7EA" target="_blank">Submit Feedback</a>
     </div>
   </footer>
 

@@ -375,7 +375,29 @@
 
   .source-item-lang { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
 
-  .site-footer {
+  .cta-bar {
+      background: var(--navy);
+      color: var(--paper);
+      padding: 2rem 2.5rem;
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+  .cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .cta-text p { font-size: 0.875rem; color: #8aaac8; font-weight: 400; }
+
+  .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  .cta-btn { background: var(--accent); color: white; padding: 0.8rem 1.75rem; text-decoration: none; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
+  .cta-btn:hover { background: #a32822; }
+  .cta-btn.secondary { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #8aaac8; }
+  .cta-btn.secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); color: white; }
+
+    .site-footer {
     border-top: 3px double var(--rule);
     padding: 2rem 0 3rem;
     display: flex;
@@ -472,7 +494,7 @@
         <tr><td>rss.app</td><td>RSS feeds for sites without native feeds (e.g. BBC Sinhala)</td><td>$9.99 / month</td></tr>
       </tbody>
     </table>
-    <p class="cost-note">Current: <strong>~$5 USD/month</strong> · Planned: <strong>~$15 - $40 /month</strong></p>
+    <p class="cost-note">Current: <strong>~$10 USD/month</strong> · Planned: <strong>~$15-$40/month</strong></p>
     <div class="upgrade-box">
       <h4>Current AI Model & Planned Upgrades</h4>
       <div class="model-row">
@@ -559,6 +581,17 @@
       </ul>
     </div>
   </div>
+
+  <div class="cta-bar">
+      <div class="cta-text">
+        <h3>Lanka Lens is a work in progress</h3>
+        <p>Your feedback directly shapes what gets built next.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://t.me/sl_news_digest_bot" class="cta-btn" target="_blank">Subscribe on Telegram →</a>
+        <a href="https://forms.gle/bh9XXhY5QjifFD7EA" class="cta-btn secondary" target="_blank">Help us improve →</a>
+      </div>
+    </div>
 
   <footer class="site-footer">
     <span>Lanka Lens · Built by DatVicious · Sri Lanka</span>

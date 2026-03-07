@@ -314,6 +314,20 @@
 
   .cta-btn:hover { background: #a32822; }
 
+  .cta-btn.secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #8aaac8;
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.4);
+      color: white;
+    }
+
+    .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
   .site-footer {
     border-top: 3px double var(--rule);
     padding: 2rem 0 3rem;
@@ -348,10 +362,18 @@
   }
 
   @media (max-width: 600px) {
-    .stories-grid { grid-template-columns: 1fr; }
-    .masthead-meta { gap: 0.75rem; }
-    .cta-bar { flex-direction: column; text-align: center; }
+    .stack-grid { grid-template-columns: 1fr 1fr; }
+    .sources-grid { grid-template-columns: 1fr 1fr; }
     nav { gap: 1.5rem; }
+
+    /* Fix CTA on mobile */
+    .cta-bar {flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+    .cta-buttons {flex-direction: column; width: 100%; }
+    .cta-btn {width: 100%; text-align: center; box-sizing: border-box; }
+
+    /* Fix footer on mobile */
+    .site-footer {flex-direction: column; align-items: flex-start; }
+    .footer-links { gap: 1rem; }
   }
 </style>
 </head>
@@ -390,7 +412,10 @@
       <h3>Get this digest every morning at 7 AM</h3>
       <p>Free, no ads, unsubscribe anytime. English, Sinhala and Tamil sources.</p>
     </div>
-    <a href="https://t.me/sl_news_digest_bot" class="cta-btn" target="_blank">Subscribe on Telegram →</a>
+    <div class="cta-buttons">
+      <a href="https://t.me/sl_news_digest_bot" class="cta-btn" target="_blank">Subscribe on Telegram →</a>
+      <a href="https://forms.gle/bh9XXhY5QjifFD7EA" class="cta-btn secondary" target="_blank">Help us improve →</a>
+    </div>
   </div>
 
   <footer class="site-footer">

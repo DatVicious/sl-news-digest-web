@@ -425,6 +425,15 @@
     .stack-grid { grid-template-columns: 1fr 1fr; }
     .sources-grid { grid-template-columns: 1fr 1fr; }
     nav { gap: 1.5rem; }
+
+    /* Fix CTA on mobile */
+    .cta-bar {flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+    .cta-buttons {flex-direction: column; width: 100%; }
+    .cta-btn {width: 100%; text-align: center; box-sizing: border-box; }
+
+    /* Fix footer on mobile */
+    .site-footer {flex-direction: column; align-items: flex-start; }
+    .footer-links { gap: 1rem; }
   }
 </style>
 </head>

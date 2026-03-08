@@ -10,7 +10,9 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-K4Q3S4DL2B');
+  gtag('config', 'G-K4Q3S4DL2B', {
+    'anonymize_ip': true
+  });
 </script>
 
 <!-- SEO Meta Tags -->
@@ -581,6 +583,21 @@
     </ul>
   </div>
 
+  <!-- Privacy section -->
+  <div class="about-section" id="privacy">
+    <div class="section-label">Privacy</div>
+    <h3>What do I collect and why?</h3>
+    <p>Lanka Lens collects no personal information. There is no login, no account, and no tracking of individual users.</p>
+    <p>This site uses Google Analytics to count anonymous visitors — how many people visit, which pages they read, and roughly where in the world they are. IP addresses are anonymised before they reach Google, meaning your precise location is never stored.</p>
+    <p>Google Analytics sets cookies in your browser to distinguish unique visits. No other cookies are used on this site.</p>
+    <p>If you'd prefer not to be counted, you can install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color: var(--accent);">Google Analytics opt-out extension</a> in your browser.</p>
+    <p>If you subscribe via the Telegram bot, Lanka Lens stores your Telegram user ID 
+and username in a secure database. This is used solely to deliver your daily digest 
+and to count subscribers. It is never sold, shared, or used for any other purpose. 
+You can delete your data at any time by sending <strong>/stop</strong> to the bot — 
+this unsubscribes you and removes your record from the database.</p>
+  </div>
+
   <div class="about-section">
     <div class="section-label">What's next</div>
     <h3>Roadmap</h3>
@@ -635,6 +652,7 @@
       <a href="index.html">Today's Digest</a>
       <a href="https://t.me/sl_news_digest_bot" target="_blank">Subscribe</a>
       <a href="https://forms.gle/bh9XXhY5QjifFD7EA" target="_blank">Submit Feedback</a>
+      <a href="about.html#privacy">Privacy</a>
     </div>
   </footer>
 

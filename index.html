@@ -406,6 +406,36 @@
     .site-footer {flex-direction: column; align-items: flex-start; }
     .footer-links { gap: 1rem; }
   }
+
+    .story-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-left: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .story-why {
+      font-size: 0.82rem;
+      color: var(--ink);
+      background: var(--paper-dark);
+      border-left: 2px solid var(--accent);
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .why-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
 </style>
 </head>
 <body>
@@ -464,6 +494,7 @@
 </div>
 
 <script>
+// Set today's date in the masthead using Sri Lanka timezone
   const dateEl = document.getElementById('today-date');
   const now = new Date();
   dateEl.textContent = now.toLocaleDateString('en-LK', {
@@ -474,6 +505,7 @@
   const SUPABASE_URL = 'https://skxyfimrocvifqvjumhs.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNreHlmaW1yb2N2aWZxdmp1bWhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMDU4NDMsImV4cCI6MjA4NzY4MTg0M30.Idu07SNxx2Kuz1jkc7FKAZe4PVor8nLpRBVsFIJJ4UY';
 
+  // Fetches the most recent digest from Supabase and renders it on the page
   async function loadDigest() {
     const container = document.getElementById('digest-content');
     try {
@@ -487,33 +519,89 @@
         return;
       }
       const data = JSON.parse(rows[0].content);
-      container.innerHTML = renderDigest(data);
+      // Pass the digest date so story cards can display it
+      container.innerHTML = renderDigest(data, rows[0].date);
     } catch (err) {
       console.error(err);
       container.innerHTML = '<div class="error-msg">Could not load digest. Please try again later.</div>';
     }
   }
 
-  function renderDigest(data) {
+  // Renders the full digest — top stories, local coverage, international view. rawDate is the YYYY-MM-DD date string from Supabase, formatted for display
+  function renderDigest(data, rawDate) {
+    // Format the digest date for display e.g. "16 March 2026"
+    const d = new Date(rawDate + 'T00:00:00');
+    const digestDate = d.toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+
     let html = '';
 
+    // Top stories section — 3 headlines, no links
     html += `<div class="top-stories"><div class="top-stories-label">📍 Top Stories Today</div>`;
     data.top_stories.forEach((story, i) => {
-      html += `<div class="top-story-item"><div class="top-story-num">${i + 1}</div><div class="top-story-text"><strong>${story.headline}</strong> (${story.source}) — ${story.summary}</div></div>`;
+      html += `<div class="top-story-item">
+        <div class="top-story-num">${i + 1}</div>
+        <div class="top-story-text"><strong>${story.headline}</strong> (${story.source}) — ${story.summary}</div>
+      </div>`;
     });
     html += `</div>`;
 
-    html += `<div class="section-header"><div class="section-flag">🇱🇰</div><div class="section-title">Local Coverage</div><div class="section-rule"></div></div><div class="stories-grid">`;
+    // Local coverage section
+    html += `<div class="section-header">
+      <div class="section-flag">🇱🇰</div>
+      <div class="section-title">Local Coverage</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="stories-grid">`;
+
     data.local.forEach(story => {
-      const langTag = story.language === 'si' ? '<span class="source-lang">Sinhala</span>' : story.language === 'ta' ? '<span class="source-lang">Tamil</span>' : '';
-      html += `<div class="story-card"><div class="story-source">${story.source} ${langTag}</div><div class="story-headline">${story.headline}</div><div class="story-summary">${story.summary}</div><a href="${story.link}" class="story-link" target="_blank">Read more →</a></div>`;
+      // Show language badge for Sinhala or Tamil origin stories
+      const langTag = story.language === 'si'
+        ? '<span class="source-lang">Sinhala</span>'
+        : story.language === 'ta'
+        ? '<span class="source-lang">Tamil</span>'
+        : '';
+
+      // why_it_matters is optional — only render if present
+      const whyHtml = story.why_it_matters
+        ? `<div class="story-why"><span class="why-label">💡 Why this matters</span> ${story.why_it_matters}</div>`
+        : '';
+
+      html += `<div class="story-card">
+        <div class="story-source">${story.source} ${langTag} <span class="story-date">${digestDate}</span></div>
+        <div class="story-headline">${story.headline}</div>
+        <div class="story-summary">${story.summary}</div>
+        ${whyHtml}
+        <a href="${story.link}" class="story-link" target="_blank">Read more →</a>
+      </div>`;
     });
+
     html += `</div><div class="ornament">— ◆ —</div>`;
 
-    html += `<div class="section-header"><div class="section-flag">🌍</div><div class="section-title">International View</div><div class="section-rule"></div></div><div class="stories-grid">`;
+    // International view section
+    html += `<div class="section-header">
+      <div class="section-flag">🌍</div>
+      <div class="section-title">International View</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="stories-grid">`;
+
     data.international.forEach(story => {
-      html += `<div class="story-card intl"><div class="story-source">${story.source}</div><div class="story-headline">${story.headline}</div><div class="story-summary">${story.summary}</div><a href="${story.link}" class="story-link" target="_blank">Read more →</a></div>`;
+      // why_it_matters is optional — only render if present
+      const whyHtml = story.why_it_matters
+        ? `<div class="story-why"><span class="why-label">💡 Why this matters</span> ${story.why_it_matters}</div>`
+        : '';
+
+      html += `<div class="story-card intl">
+        <div class="story-source">${story.source} <span class="story-date">${digestDate}</span></div>
+        <div class="story-headline">${story.headline}</div>
+        <div class="story-summary">${story.summary}</div>
+        ${whyHtml}
+        <a href="${story.link}" class="story-link" target="_blank">Read more →</a>
+      </div>`;
     });
+
     html += `</div>`;
     return html;
   }
